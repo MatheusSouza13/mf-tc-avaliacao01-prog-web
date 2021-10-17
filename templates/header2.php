@@ -18,7 +18,7 @@
 <body class="grey lighten-4">
 	<nav class="white z-depht-0">
 		<div class="container">
-			<a href="index.php" class="brand-logo brand-text center">Comprar Ingressos</a>
+			<a href="index.php" class="brand-logo brand-text center">MFTC Ingressos</a>
 			<!-- <ul id="nav-mobile" class="right hide-on-small-and-down">
 				<li><a href="cadastro.php" class="btn brand z-depht-0">Cadastrar Show</a></li> 
 			</ul> -->
