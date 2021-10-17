@@ -8,14 +8,20 @@
 	<section class="container grey-text">
 		<h4 class="center">Novo Show</h4>
 		<form class="white" action="adicionar.php" method="POST" >
-			<label>Imagem</label>
+			<label>Imagem:</label>
 			<input type="text" name="image" value="">			
 
-			<label>Banda</label>
+			<label>Banda:</label>
 			<input type="url" name="banda" value="">			
 			
-			<label>Horário (separados por vírgula)</label>
-			<input type="text" name="ingredientes" value="">				
+			<label>Local:</label>
+			<input type="text" name="local" value="">	
+			
+			<label>Descrição:</label>
+			<input type="text" name="local" value="">	
+
+			<label>Capacidade:</label>
+			<input type="text" name="local" value="">
 
 			
 			<div class="center" style="margin-top: 10px;">
