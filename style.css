@@ -1,0 +1,44 @@
+/*Global @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+:root {
+	--color1: #34495e;
+	--color2: #FFC300;
+	--color3: #FF5733;
+	--color4: #C70039;
+	--color5: #900C3F;
+	--color6: #581845;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+	display: flex; 
+	flex-direction: row; 
+	justify-content: center; 
+	align-items: center; 
+	background-image: url("https://source.unsplash.com/random");
+	background-size: cover;
+	width:100%;
+	padding: 10rem;
+
+}
+
+body{
+	background-color: var(--color1);
+	font-family: Nunito, sans-serif;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.grid-container{
+	display: grid;
+
+}
+
+
+
+
