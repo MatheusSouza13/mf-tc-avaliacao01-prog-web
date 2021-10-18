@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Out-2021 às 04:11
+-- Tempo de geração: 19-Out-2021 às 01:55
 -- Versão do servidor: 10.4.20-MariaDB
 -- versão do PHP: 8.0.9
 
@@ -22,6 +22,18 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `shows` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `shows`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `datas`
+--
+
+CREATE TABLE `datas` (
+  `id_data` int(11) NOT NULL,
+  `id_show` int(11) NOT NULL,
+  `data_do_show` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,7 +64,8 @@ CREATE TABLE `ingressos` (
   `valor` double DEFAULT NULL,
   `meia` tinyint(1) DEFAULT NULL,
   `numero_do_ingresso` int(11) DEFAULT NULL,
-  `mesa` int(11) DEFAULT NULL
+  `mesa` int(11) DEFAULT NULL,
+  `id_data` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,13 +80,19 @@ CREATE TABLE `shows` (
   `imagem` varchar(255) DEFAULT NULL,
   `cantor_banda` varchar(100) DEFAULT NULL,
   `capacidade_total` int(11) DEFAULT NULL,
-  `descricao` varchar(255) DEFAULT NULL,
-  `data_do_show` date DEFAULT NULL
+  `descricao` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `datas`
+--
+ALTER TABLE `datas`
+  ADD PRIMARY KEY (`id_data`),
+  ADD KEY `tb_datas_id_show` (`id_show`);
 
 --
 -- Índices para tabela `enderecos`
@@ -86,7 +105,8 @@ ALTER TABLE `enderecos`
 --
 ALTER TABLE `ingressos`
   ADD PRIMARY KEY (`id_ingresso`),
-  ADD KEY `tb_ingressos_id_show` (`id_show`);
+  ADD KEY `tb_ingressos_id_show` (`id_show`),
+  ADD KEY `tb_ingressos_id_data` (`id_data`);
 
 --
 -- Índices para tabela `shows`
@@ -98,6 +118,12 @@ ALTER TABLE `shows`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `datas`
+--
+ALTER TABLE `datas`
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `enderecos`
@@ -122,9 +148,16 @@ ALTER TABLE `shows`
 --
 
 --
+-- Limitadores para a tabela `datas`
+--
+ALTER TABLE `datas`
+  ADD CONSTRAINT `tb_datas_id_show` FOREIGN KEY (`id_show`) REFERENCES `shows` (`id_show`);
+
+--
 -- Limitadores para a tabela `ingressos`
 --
 ALTER TABLE `ingressos`
+  ADD CONSTRAINT `tb_ingressos_id_data` FOREIGN KEY (`id_data`) REFERENCES `datas` (`id_data`),
   ADD CONSTRAINT `tb_ingressos_id_show` FOREIGN KEY (`id_show`) REFERENCES `shows` (`id_show`);
 
 --
