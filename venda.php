@@ -46,9 +46,9 @@
 ?>
 
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
-    <//?php include('templates/header2.php')?>
+    <?php include('templates/header2.php')?>
 
     <div calss="containter justify">
         <div class="row">
@@ -79,8 +79,7 @@
     </div>
 
 
-    <?//php include('templates/footer.php')?>
+    <?php include('templates/footer.php')?>
 
 
-</html> -->
-
+</html>
