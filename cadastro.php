@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-	<?php include('templates/header.php') ?>
+	<?php include('templates/header2.php') ?>
 	<section class="container grey-text">
 		<h4 class="center">Novo Show</h4>
 		<form class="white" action="adicionar.php" method="POST" >

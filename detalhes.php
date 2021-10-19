@@ -48,7 +48,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    <?php include('templates/header.php')?>
+    <?php include('templates/header2.php')?>
 
     <div calss="containter justify">
         <div class="row">
@@ -66,12 +66,9 @@
                     <div class="card-action center">
                         <a href="#">Editar</a>
 						<a href="#">Remover</a>
-						<a href="#">Horários</a>
-						<a href="#">Datas</a>
-						<a href="#">Valores</a>
+						<a href="#">Datas/ Horários/ Valores</a>
                     </div>
-            </div>
-          
+            </div>         
 
 
         
