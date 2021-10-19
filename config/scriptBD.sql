@@ -35,24 +35,6 @@ CREATE TABLE `datas` (
   `data_do_show` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `enderecos`
---
-
-CREATE TABLE `enderecos` (
-  `id_endereco` int(11) NOT NULL,
-  `rua` varchar(100) DEFAULT NULL,
-  `bairro` varchar(30) DEFAULT NULL,
-  `numero` int(11) DEFAULT NULL,
-  `cidade` varchar(35) DEFAULT NULL,
-  `estado` varchar(30) DEFAULT NULL,
-  `UF` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
 --
 -- Estrutura da tabela `ingressos`
 --
@@ -80,7 +62,8 @@ CREATE TABLE `shows` (
   `imagem` varchar(255) DEFAULT NULL,
   `cantor_banda` varchar(100) DEFAULT NULL,
   `capacidade_total` int(11) DEFAULT NULL,
-  `descricao` varchar(255) DEFAULT NULL
+  `descricao` varchar(255) DEFAULT NULL,
+  `endereco`  varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -95,12 +78,7 @@ ALTER TABLE `datas`
   ADD KEY `tb_datas_id_show` (`id_show`);
 
 --
--- Índices para tabela `enderecos`
---
-ALTER TABLE `enderecos`
-  ADD PRIMARY KEY (`id_endereco`);
 
---
 -- Índices para tabela `ingressos`
 --
 ALTER TABLE `ingressos`
@@ -112,8 +90,7 @@ ALTER TABLE `ingressos`
 -- Índices para tabela `shows`
 --
 ALTER TABLE `shows`
-  ADD PRIMARY KEY (`id_show`),
-  ADD KEY `tb_shows_id_endereco` (`id_endereco`);
+  ADD PRIMARY KEY (`id_show`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -126,10 +103,6 @@ ALTER TABLE `datas`
   MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `enderecos`
---
-ALTER TABLE `enderecos`
-  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `ingressos`
@@ -161,10 +134,7 @@ ALTER TABLE `ingressos`
   ADD CONSTRAINT `tb_ingressos_id_show` FOREIGN KEY (`id_show`) REFERENCES `shows` (`id_show`);
 
 --
--- Limitadores para a tabela `shows`
---
-ALTER TABLE `shows`
-  ADD CONSTRAINT `tb_shows_id_endereco` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`id_endereco`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
