@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect('%', 'mftc', '123456', 'shows');
+    $conn = mysqli_connect('localhost', 'mftc', '123456', 'shows');
 
     if(!$conn)
     {
