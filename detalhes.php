@@ -15,7 +15,7 @@
 			//sucesso
 			header('Location: index.php');			
 		}else{
-			echo 'query error'.m,ysqli_error($conn);
+			echo 'query error'.mysqli_error($conn);
 		}
 	}
 	

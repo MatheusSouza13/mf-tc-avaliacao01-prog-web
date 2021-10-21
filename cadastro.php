@@ -21,7 +21,7 @@
 			$erros['cantor_banda'] = 'O nome da banda/ cantor é obrigatório';
 		} else{
 			$cantor_banda = $_POST['cantor_banda'];
-			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$banda_cantor)){
+			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$cantor_banda)){
 				$erros['cantor_banda'] = 'O nome da banda/ cantor deve conter somente letras';			
 				$cantor_banda = '';
 			}
@@ -32,7 +32,7 @@
 			$erros['endereco'] = 'Endereço válido deve ser informado </br>';
 		} else{
 			$endereco = $_POST['endereco'];
-			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$local)){
+			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$endereco)){
 				$erros['endereco'] = 'O endereço deve conter somente letras e separados por vírgula';			
 				$endereco = '';
 			}
@@ -74,12 +74,12 @@
 			$capacidade_total =  mysqli_real_escape_string($conn,$_POST['capacidade_total']);
 			
 			//Query SQL
-			$sql = "INSERT INTO shows(imagem,cantor_banda,capacidade_total,descricao,endereco,) VALUES('$imagem','$cantor_banda',$capacidade_total,$descricao,'$endereco')";
+			$sql = "INSERT INTO shows(imagem,cantor_banda,capacidade_total,descricao,endereco) VALUES('$imagem','$cantor_banda','$capacidade_total','$descricao','$endereco')";
 			
 			//Salva no banco de dados
 			if (mysqli_query($conn, $sql)){
 				//sucesso
-				header('Location:index.php');
+				header('Location: index.php');
 			} else {
 				echo 'Erro na query: '.mysqli_error($conn);
 			}
@@ -93,7 +93,7 @@
 	<?php include('templates/header2.php') ?>
 	<section class="container grey-text">
 		<h4 class="center">Novo Show</h4>
-		<form class="white" action="index.php" method="POST" >
+		<form class="white" action="cadastro.php" method="POST" >
 			<label>Imagem:</label>
 			<input type="url" name="imagem" value="<?php echo $imagem ?>">
 			<div class="red-text"><?php echo $erros['imagem']?></div>
