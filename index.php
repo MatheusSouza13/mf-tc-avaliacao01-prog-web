@@ -19,27 +19,33 @@
 	//print_r($shows);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <?php include('templates/header.php')?>
 
-    <div calss="containter justify">
-        <div class="row">
+    <?php if($shows){?>
+		    <h4 class="center">Shows disponíveis</h4>
+        <?php }
+        else{?>
+            <h4 class="center">Nenhum show disponível</h4>
+    <?php }?>
+
+    <div calss="containter" style="display: flex; align-items: center; margin-left: 75px; margin-right: 75px;">
+        <div class="row" style="margin-top: 2%">
             <?php foreach ($shows as $show) {?>
-                <div class="col s2 m4 card large">
-                    <div class="card-image z-depth-0">
-                        <img src="<?php echo htmlspecialchars($show['imagem']);?>" alt="<?php echo htmlspecialchars($show['id_show']);?>"/>
-                        <span class="card-title bold"><?php echo htmlspecialchars($show['cantor_banda']);?></span>
-                    </div>
-                    <div class="card-content">
-                        <p><?php echo htmlspecialchars($show['descricao']);?></p>
-                        <p>Local: <?php echo htmlspecialchars($show['endereco']);?></p>
-                    </div>
-                    
-                    <div class="card-action">
-                        <a href="detalhes.php?id_show=<?php echo $show['id_show']?>">Detalhes</a>
-                        <a href="venda.php?id_show=<?php echo $show['id_show']?>">Comprar Ingresso</a>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image z-depth-0">
+                            <img src="./imagens/<?php echo htmlspecialchars($show['imagem']);?>.png" alt="<?php echo htmlspecialchars($show['id_show']);?>"/>
+                        </div>
+                        <div class="card-content">
+                            <p><span style="font-weight: bold;">Cantor/Banda: </span><?php echo htmlspecialchars($show['cantor_banda']);?></p>
+                            <p><span style="font-weight: bold;">Local: </span> <?php echo htmlspecialchars($show['endereco']);?></p>
+                        </div>
+                        
+                        <div class="card-action center">
+                            <a href="detalhes.php?id_show=<?php echo $show['id_show']?>">Detalhes</a>
+                        </div>
                     </div>
                 </div>
             <?php } ?>

@@ -4,38 +4,26 @@
 	$erros = array('imagem'=>'','cantor_banda'=>'','endereco'=>'','descricao'=>'','capacidade_total'=>'');
 	$imagem = $cantor_banda = $endereco = $descricao = $capacidade = '';
 	
-	if (isset($_POST['enviar'])){		
+	if (isset($_POST['enviar'])){	
 		//Verificar link da imagem da banda
 		if (empty($_POST['imagem'])){
 			$erros['imagem'] = 'A imagem é obrigatória';
 		} else{
-			$imagem = $_POST['imagem'];
-			if (!filter_var($imagem, FILTER_VALIDATE_URL)){
-				$erros['imagem'] = 'Insira um link válido';
-				$imagem = '';
-			}
+			$imagem = htmlspecialchars($_POST['imagem']);
 		}
 		
 		//Verificar nome da banda/ cantor
 		if (empty($_POST['cantor_banda'])){
 			$erros['cantor_banda'] = 'O nome da banda/ cantor é obrigatório';
 		} else{
-			$cantor_banda = $_POST['cantor_banda'];
-			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$cantor_banda)){
-				$erros['cantor_banda'] = 'O nome da banda/ cantor deve conter somente letras';			
-				$cantor_banda = '';
-			}
+			$cantor_banda = htmlspecialchars($_POST['cantor_banda']);
 		}
 		
 		//Verificar local
 		if (empty($_POST['endereco'])){
 			$erros['endereco'] = 'Endereço válido deve ser informado </br>';
 		} else{
-			$endereco = $_POST['endereco'];
-			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$endereco)){
-				$erros['endereco'] = 'O endereço deve conter somente letras e separados por vírgula';			
-				$endereco = '';
-			}
+			$endereco = htmlspecialchars($_POST['endereco']);
 		}
 		
 				
@@ -43,11 +31,7 @@
 		if (empty($_POST['descricao'])){
 			$erros['descricao'] = 'A descrição do show deve ser informada </br>';
 		} else{
-			$descricao = $_POST['descricao'];
-			if (!preg_match('/^([a-zA-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]+)(,\s*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]*)*$/',$descricao)){
-				$erros['descricao'] = 'A descrição deve conter somente letras e separados por vírgula';			
-				$descricao = '';
-			}
+			$descricao = htmlspecialchars($_POST['descricao']);
 		}
 
 				
@@ -62,10 +46,8 @@
 			}
 		}
 		
-		if (array_filter($erros)){
-			//echo "Erro no formulário.";
-		}else{
-			//echo "Formulário válido";
+		if (!array_filter($erros))
+		{
 			//Limpando o SQL de códigos suspeitos
 			$imagem = mysqli_real_escape_string($conn,$_POST['imagem']);
 			$cantor_banda = mysqli_real_escape_string($conn,$_POST['cantor_banda']);
@@ -95,7 +77,7 @@
 		<h4 class="center">Novo Show</h4>
 		<form class="white" action="cadastro.php" method="POST" >
 			<label>Imagem:</label>
-			<input type="url" name="imagem" value="<?php echo $imagem ?>">
+			<input type="text" name="imagem" value="<?php echo $imagem ?>">
 			<div class="red-text"><?php echo $erros['imagem']?></div>
 
 			<label>Banda:</label>
@@ -111,10 +93,9 @@
 			<div class="red-text"><?php echo $erros['descricao']?></div>	
 
 			<label>Capacidade:</label>
-			<input type="number" name="capacidade_total" value="<?php echo $capacidade_total ?>">
+			<input type="number" min=1 name="capacidade_total" value="<?php echo $capacidade_total ?>">
 			<div class="red-text"><?php echo $erros['capacidade_total']?></div>	
 
-			
 			<div class="center" style="margin-top: 10px;">
 				<input type="submit" name="enviar" value="Enviar" class="btn brand z-depth-0">
 			</div>
